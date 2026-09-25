@@ -1,7 +1,5 @@
 {% extends "base.html" %}
 
-{% load crispy_forms_tags %}
-
 {% block title %}
 
 
@@ -17,15 +15,11 @@
   
   
 </h1>
-<form class="form-horizontal"
+<form class="user-form"
       method="post"
       action="{% url 'users:update' %}">
   {% csrf_token %}
-  {{ form|crispy }}
-  <div class="control-group">
-    <div class="controls">
-      <button type="submit" class="btn btn-primary">Update</button>
-    </div>
-  </div>
+  {{ form.as_p }}
+  <button type="submit" class="button">Update</button>
 </form>
 {% endblock content %}

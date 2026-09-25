@@ -9,7 +9,7 @@ from django.db import migrations
 
 def _update_or_create_site_with_sequence(site_model, connection, domain, name):
     """Update or create the site with default ID and keep the DB sequence in sync."""
-    site, created = site_model.objects.update_or_create(
+    _site, created = site_model.objects.update_or_create(
         id=settings.SITE_ID,
         defaults={
             "domain": domain,
@@ -24,14 +24,18 @@ def _update_or_create_site_with_sequence(site_model, connection, domain, name):
         # To avoid this, we need to manually update DB sequence and make sure it's
         # greater than the maximum value.
         max_id = site_model.objects.order_by("-id").first().id
-        with connection.cursor() as cursor:
-            cursor.execute("SELECT last_value from django_site_id_seq")
-            (current_id,) = cursor.fetchone()
-            if current_id <= max_id:
-                cursor.execute(
-                    "alter sequence django_site_id_seq restart with %s",
-                    [max_id + 1],
-                )
+        # PostgreSQL uses a sequence for the auto-incrementing primary key.
+        # SQLite (the local development fallback) does not expose that sequence,
+        # so there is nothing to synchronize there.
+        if connection.vendor == "postgresql":
+            with connection.cursor() as cursor:
+                cursor.execute("SELECT last_value from django_site_id_seq")
+                (current_id,) = cursor.fetchone()
+                if current_id <= max_id:
+                    cursor.execute(
+                        "alter sequence django_site_id_seq restart with %s",
+                        [max_id + 1],
+                    )
 
 
 def update_site_forward(apps, schema_editor):

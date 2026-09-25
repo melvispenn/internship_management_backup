@@ -4,7 +4,6 @@ from http import HTTPStatus
 from typing import TYPE_CHECKING
 
 import pytest
-from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages.middleware import MessageMiddleware
@@ -100,8 +99,6 @@ class TestUserDetailView:
         request = rf.get("/fake-url/")
         request.user = AnonymousUser()
         response = user_detail_view(request, pk=user.pk)
-        login_url = reverse(settings.LOGIN_URL)
-
         assert isinstance(response, HttpResponseRedirect)
         assert response.status_code == HTTPStatus.FOUND
-        assert response.url == f"{login_url}?next=/fake-url/"
+        assert response.url == "/?next=/fake-url/"

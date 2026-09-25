@@ -1,3 +1,18 @@
+# ruff: noqa: E402
+import os
+from pathlib import Path
+
+import environ
+
+BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
+local_env = environ.Env()
+local_env_file = BASE_DIR / ".envs/.local/.django"
+if local_env_file.exists():
+    local_env.read_env(str(local_env_file), overwrite=False)
+
+if not os.getenv("DATABASE_URL") and not os.getenv("POSTGRES_DB"):
+    os.environ["DATABASE_URL"] = "sqlite:////tmp/internship_management.sqlite3"
+
 from .base import *  # noqa: F403
 from .base import INSTALLED_APPS
 from .base import MIDDLEWARE
@@ -28,6 +43,12 @@ CACHES = {
 # EMAIL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-host
+# Keep local signup usable even when Docker/Mailpit is not running. Set
+# DJANGO_EMAIL_BACKEND to the SMTP backend when Mailpit is available.
+EMAIL_BACKEND = env(
+    "DJANGO_EMAIL_BACKEND",
+    default="django.core.mail.backends.console.EmailBackend",
+)
 EMAIL_HOST = env("EMAIL_HOST", default="mailpit")
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-port
 EMAIL_PORT = 1025
