@@ -1,4 +1,4 @@
-# InPACE Internship Management
+=# InPACE Internship Management
 
 ## Project principles
 
