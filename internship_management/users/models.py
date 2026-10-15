@@ -22,6 +22,8 @@ class User(AbstractUser):
     first_name = None  # type: ignore[assignment]
     last_name = None  # type: ignore[assignment]
     email = EmailField(_("email address"), unique=True)
+    role = CharField(max_length=32, blank=True)
+    specialty = CharField(max_length=255, blank=True)
     username = None  # type: ignore[assignment]
 
     USERNAME_FIELD = "email"

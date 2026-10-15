@@ -1,29 +1,37 @@
-// Detect browser language and set django_language cookie if not present
+// Keep the first visit aligned with the browser/device language.
 (function () {
   try {
-    if (document.cookie.indexOf('django_language=') === -1) {
-      var lang = navigator.language || navigator.userLanguage || 'en-US';
-      // Normalize to lowercase-underscore format Django expects sometimes: en-us
-      lang = lang.toLowerCase();
-      // Only set if different from default html lang
-      var htmlLang = document.documentElement.lang || '';
-      if (!htmlLang || htmlLang.toLowerCase() !== lang) {
-        var cookie = 'django_language=' + encodeURIComponent(lang) + ';path=/';
-        // Set a long-lived cookie (30 days)
-        var expires = new Date();
-        expires.setTime(expires.getTime() + 30 * 24 * 60 * 60 * 1000);
-        cookie += ';expires=' + expires.toUTCString();
-        document.cookie = cookie;
-        // Optionally reload to apply translations on first visit
-        try {
-          window.location.reload();
-        } catch (e) {
-          // ignore reload failures
-        }
+    if (document.cookie.indexOf('django_language=') !== -1) {
+      return;
+    }
+
+    var browserLanguages = navigator.languages || [navigator.language || navigator.userLanguage];
+    var language = 'en-us';
+    for (var i = 0; i < browserLanguages.length; i += 1) {
+      var primaryLanguage = (browserLanguages[i] || '').toLowerCase().split('-')[0];
+      if (primaryLanguage === 'fr') {
+        language = 'fr-fr';
+        break;
+      }
+      if (primaryLanguage === 'pt') {
+        language = 'pt-br';
+        break;
+      }
+      if (primaryLanguage === 'en') {
+        language = 'en-us';
+        break;
       }
     }
+
+    var htmlLanguage = (document.documentElement.lang || '').toLowerCase();
+    if (htmlLanguage !== language) {
+      var cookie = 'django_language=' + encodeURIComponent(language) + ';path=/;samesite=lax';
+      var expires = new Date();
+      expires.setTime(expires.getTime() + 365 * 24 * 60 * 60 * 1000);
+      document.cookie = cookie + ';expires=' + expires.toUTCString();
+      window.location.reload();
+    }
   } catch (e) {
-    // Avoid breaking the page if navigator is undefined
-    console.error('locale detection failed', e);
+    // Language detection must never prevent the application from loading.
   }
 })();

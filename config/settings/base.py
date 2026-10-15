@@ -96,6 +96,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "internship_management.users",
+    "internship_management.internships",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -110,7 +111,7 @@ MIGRATION_MODULES = {"sites": "internship_management.contrib.sites.migrations"}
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#authentication-backends
 AUTHENTICATION_BACKENDS = [
-    # Add the project's custom authentication backend here when implemented.
+    "django.contrib.auth.backends.ModelBackend",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
 AUTH_USER_MODEL = "users.User"

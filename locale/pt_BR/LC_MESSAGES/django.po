@@ -11,6 +11,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: internship_management/templates/base.html:32
+msgid "Internship Management"
+msgstr "Gestão de Estágios"
+
+#: internship_management/templates/base.html:35
+msgid "Home"
+msgstr "Início"
+
+#: internship_management/templates/base.html:38
+msgid "About"
+msgstr "Sobre"
 #: internship_management/templates/account/account_inactive.html:5
 #: internship_management/templates/account/account_inactive.html:8
 msgid "Account Inactive"
