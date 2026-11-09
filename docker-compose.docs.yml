@@ -1,7 +1,7 @@
 services:
   docs:
-    image: internship_management_local_docs
-    container_name: internship_management_local_docs
+    image: owmp_local_docs
+    container_name: owmp_local_docs
     build:
       context: .
       dockerfile: ./compose/local/docs/Dockerfile

@@ -1,6 +1,6 @@
 // For format details, see https://containers.dev/implementors/json_reference/
 {
-    "name": "internship_management_dev",
+    "name": "owmp-dev",
     "dockerComposeFile": [
         "../docker-compose.local.yml"
     ],

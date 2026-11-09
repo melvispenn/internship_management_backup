@@ -1,10 +1,7 @@
 
-# My_Project_InPACE
-This repository will contain information about my  project for my HND defence
+# OWMP
 
-# Internship Management
-
-This is a platform whish will facilitate companies to supervise, manage and track interns progress. This will permit the supervisor to follow thier progress and attendance.
+This project is the OWMP platform for managing and tracking organisational work, with a focus on supervison and progress visibility.
 
 [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)

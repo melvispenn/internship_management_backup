@@ -10,7 +10,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
-    image: internship_management_local_django
+    image: owmp_local_django
     depends_on:
       - postgres
       - redis
@@ -29,7 +29,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
-    image: internship_management_production_postgres
+    image: owmp_local_postgres
     volumes:
       - owmp_local_postgres_data:/var/lib/postgresql/18/docker
       - owmp_local_postgres_data_backups:/backups
@@ -48,7 +48,7 @@ services:
 
   celeryworker:
     <<: *django
-    image: internship_management_local_celeryworker
+    image: owmp_local_celeryworker
     depends_on:
       - redis
       - postgres
@@ -58,7 +58,7 @@ services:
 
   celerybeat:
     <<: *django
-    image: internship_management_local_celerybeat
+    image: owmp_local_celerybeat
     depends_on:
       - redis
       - postgres
@@ -68,7 +68,7 @@ services:
 
   flower:
     <<: *django
-    image: internship_management_local_flower
+    image: owmp_local_flower
     ports:
       - '5555:5555'
     command: /start-flower

@@ -11,7 +11,7 @@ if local_env_file.exists():
     local_env.read_env(str(local_env_file), overwrite=False)
 
 if not os.getenv("DATABASE_URL") and not os.getenv("POSTGRES_DB"):
-    os.environ["DATABASE_URL"] = "sqlite:////tmp/internship_management.sqlite3"
+    os.environ["DATABASE_URL"] = "sqlite:////tmp/owmp.sqlite3"
 
 from .base import *  # noqa: F403
 from .base import INSTALLED_APPS

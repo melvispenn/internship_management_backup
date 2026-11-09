@@ -276,3 +276,7 @@ internship_management/media/
 .env
 .envs/*
 !.envs/.local/
+
+# Local environment files containing secrets
+.envs/.local/.django
+.envs/.local/.postgres

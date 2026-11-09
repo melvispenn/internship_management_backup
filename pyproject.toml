@@ -1,5 +1,5 @@
 [project]
-name = "internship_management"
+name = "owmp"
 version = "0.1.0"
 description = "This is a platform whish will facilitate companies to supervise, manage and track interns progress. This will permit the supervisor to follow thier progress and attendance."
 readme = "README.md"
