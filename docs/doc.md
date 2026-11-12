@@ -10,7 +10,7 @@
 
 ## Architecture and workflow
 
-Each business application should add, when needed, 'permissions.py', 'services.py', 'configuration.py', and separate 'urls/', 'forms/', 'views/', 'tasks/' and 'api/' modules as the domain grows. Shared validators and exceptions belong in 'internship_management/core/'.
+Each business application should add, when needed, 'permissions.py', 'services.py', 'configuration.py', and separate 'urls/', 'forms/', 'views/', 'tasks/' and 'api/' modules as the domain grows. Shared validators and exceptions belong in 'owmp/core/'.
 
 For each feature: define the backend contract and validation, implement authorization, add tests for success/failure/unauthorized access, document the security considerations, then build the translated frontend with protected forms.
 
@@ -42,11 +42,11 @@ Tailwind CSS v4 and the official @tailwindcss/cli package are installed through 
 - Watch CSS during development: npm run css:watch
 - Equivalent Just commands: just css and just css-watch
 
-The generated file is internship_management/static/css/output.css. Do not edit that generated file manually; edit internship_management/static/css/input.css.
+The generated file is owmp/static/css/output.css. Do not edit that generated file manually; edit owmp/static/css/input.css.
 
 ## Locale detection (browser/device language)
 
-We added a small JavaScript helper at `internship_management/static/js/locale_detect.js` which sets a `django_language` cookie based on `navigator.language` on first visit when the cookie is not already present. The script is included in the base template so translations apply on initial load.
+We added a small JavaScript helper at `owmp/static/js/locale_detect.js` which sets a `django_language` cookie based on `navigator.language` on first visit when the cookie is not already present. The script is included in the base template so translations apply on initial load.
 
 Developers should ensure that translatable strings in templates and JavaScript are marked appropriately and that `LocaleMiddleware` remains enabled in `config/settings/base.py`.
 

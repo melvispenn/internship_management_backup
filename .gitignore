@@ -269,7 +269,7 @@ tags
 dump.rdb
 
 ### Project template
-internship_management/media/
+owmp/media/
 
 .pytest_cache/
 .ipython/

@@ -11,7 +11,7 @@ services:
       - /app/.venv
       - ./docs:/docs:z
       - ./config:/app/config:z
-      - ./internship_management:/app/internship_management:z
+      - ./owmp:/app/owmp:z
     ports:
       - '9000:9000'
     command: /start-docs

@@ -10,7 +10,7 @@ if "%SPHINXBUILD%" == "" (
 )
 set SOURCEDIR=_source
 set BUILDDIR=_build
-set APP=..\internship_management
+set APP=..\owmp
 
 if "%1" == "" goto help
 

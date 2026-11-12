@@ -19,7 +19,7 @@ urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
-    path("users/", include("internship_management.users.urls", namespace="users")),
+    path("users/", include("owmp.users.urls", namespace="users")),
     # Your stuff: custom urls includes go here
     # ...
     # Media files

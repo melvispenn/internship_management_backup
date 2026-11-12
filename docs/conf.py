@@ -28,7 +28,7 @@ django.setup()
 
 # -- Project information -----------------------------------------------------
 
-project = "Internship Management"
+project = "owmp"
 copyright = """2026, Penn Melvis"""  # noqa: A001
 author = "Penn Melvis"
 

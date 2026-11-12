@@ -1,8 +1,8 @@
-from pathlib import Path
 import subprocess
+from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
-CSS_DIR = PROJECT_ROOT / "internship_management/static/css"
+CSS_DIR = PROJECT_ROOT / "owmp/static/css"
 
 
 def test_tailwind_input_uses_official_import():
@@ -12,7 +12,7 @@ def test_tailwind_input_uses_official_import():
 
 
 def test_base_template_loads_generated_output_css():
-    template = (PROJECT_ROOT / "internship_management/templates/base.html").read_text()
+    template = (PROJECT_ROOT / "owmp/templates/base.html").read_text()
     assert "{% static 'css/output.css' %}" in template
 
 

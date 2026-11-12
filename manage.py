@@ -20,9 +20,9 @@ def main():
         ) from exc
 
     # This allows easy placement of apps within the interior
-    # internship_management directory.
+    # owmp directory.
     current_path = Path(__file__).parent.resolve()
-    sys.path.append(str(current_path / "internship_management"))
+    sys.path.append(str(current_path / "owmp"))
 
     execute_from_command_line(sys.argv)
 
